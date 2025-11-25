@@ -1,3 +1,6 @@
+// TO_DO LIST BY Alan Gomez.
+// 1. To-Do List Application
+// Project Idea: Create a to-do list application where users can add, edit, and delete tasks. Each task can be represented as an object with attributes like task name, due date, and priority.
 #include "to_do_list.h"
 #include <iostream>
 
