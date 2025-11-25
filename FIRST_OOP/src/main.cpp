@@ -1,77 +1,42 @@
-/******************************************************************
- * Section 13 Challenge
- * main.cpp
- * 
- * Test the Movies project
- * 
- * ***************************************************************/
+#include "to_do_list.h"
 #include <iostream>
-#include "Movies.h"
 
-// Function prototypes
-void increment_watched(Movies &movies, std::string name);
-void add_movie(Movies &movies, std::string name, std::string rating, int watched);
+using namespace std;
 
-/******************************************************************
- * helper function 
- * increment_watched expects a reference to a Movies object 
- * and the name of the movie to increment the watched count
- *
- * If the watched count was incremented successfully it
-*  displays a success message
-*  otherwise the watched count could not be incremented
-*  because the name of the movie was not found
- * ***************************************************************/
+int main()
+{
 
-void increment_watched(Movies &movies, std::string name) {
-    if (movies.increment_watched(name)) {
-        std::cout << name << " watch incremented" <<  std::endl;
-    } else {
-        std::cout << name << " not found" <<  std::endl;
-    }
-}
+    TODO TODO_LIST;
 
-/******************************************************************
-* helper function
-*  add_movie expects a reference to a Movies object 
- * and the name of the movie, the rating and the watched count
- *
- * If the movie was successfully added to the movies object it
-*  displays a success message
-*  otherwise the movie was not added 
-*  because the name of the movie was already in movies
- * ***************************************************************/
-void add_movie(Movies &movies, std::string name, std::string rating, int watched) {
-    if (movies.add_movie(name,rating,watched)) {
-        std::cout << name << " added" << std::endl;
-    } else {
-        std::cout << name << " already exists" <<  std::endl;
-    }
-}
+    TODO_LIST.TD_ADD("Ejemplo OOP 1", "Hoy", 0);
+    TODO_LIST.TD_ADD("Ejemplo OOP 2", "Ayer", 5);
+    TODO_LIST.TD_ADD("Ejemplo OOP 3", "Mañana", 3);
+    TODO_LIST.TD_ADD("Ejemplo OOP 4", "Lunes", 999);
 
-int main() {
-    
-    Movies my_movies;
-    
-    my_movies.display();
-    
-    add_movie(my_movies, "Big", "PG-13",2);                 // OK
-    add_movie(my_movies,"Star Wars", "PG",5);             // OK
-    add_movie(my_movies,"Cinderella", "PG",7);           // OK
-     
-    my_movies.display();   // Big, Star Wars, Cinderella
-    
-    add_movie(my_movies,"Cinderella", "PG",7);            // Already exists
-    add_movie(my_movies,"Ice Age", "PG",12);              // OK
- 
-    my_movies.display();    // Big, Star Wars, Cinderella, Ice Age
-    
-    increment_watched(my_movies,"Big");                    // OK
-    increment_watched(my_movies,"Ice Age");              // OK
-    
-    my_movies.display();    // Big and Ice Age watched count incremented by 1
-    
-    increment_watched(my_movies,"XXX");         // XXX not found
+    cout << "------------------------------------------------------------\n";
 
-	return 0;
+    TODO_LIST.TD_DISPLAY("Ejemplo OOP 1");
+    TODO_LIST.TD_DISPLAY("Ejemplo OOP 2");
+    TODO_LIST.TD_DISPLAY("Ejemplo OOP 3");
+    TODO_LIST.TD_DISPLAY("Ejemplo OOP 4");
+
+    cout << "------------------------------------------------------------\n";
+
+    TODO_LIST.TD_ADD("Ejemplo OOP 5", "Hoy", 502);
+    TODO_LIST.TD_DISPLAY("Ejemplo OOP 5");
+
+    cout << "------------------------------------------------------------\n";
+
+    TODO_LIST.TD_DISPLAY("Ejemplo OOP 2");
+    TODO_LIST.TD_EDIT("Ejemplo OOP 2", "Martes", 0);
+    TODO_LIST.TD_DISPLAY("Ejemplo OOP 2");
+
+    cout << "------------------------------------------------------------\n";
+
+    TODO_LIST.TD_DISPLAY("Ejemplo OOP 4");
+    TODO_LIST.TD_DELETE("Ejemplo OOP 4");
+    TODO_LIST.TD_DISPLAY("Ejemplo OOP 4");
+
+    cout << "Finish the example";
+
 }
